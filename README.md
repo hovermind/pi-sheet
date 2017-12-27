@@ -1,5 +1,8 @@
-# `[DllImport("name.dll", ...)]`
-*Indicates that the attributed method is exposed by an unmanaged dynamic-link library (DLL) as a static entry point*
+**C# Platform Invoke Cheatsheet for marshalling managed code into unmanaged code and vice-versa**
+
+##  `[DllImport("name.dll", ...)]`
+
+*Indicates that the attributed method is exposed by an unmanaged dynamic-link library (DLL) as a static entry point.* For details see [DllImportAttribute Class](https://msdn.microsoft.com/en-us/library/system.runtime.interopservices.dllimportattribute)
 
 | Field | Usage |
 |-------|-------|
