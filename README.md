@@ -3,7 +3,7 @@
  - [MarshalAs](#marshalas)
  - [StructureLayout](#struct-layout)
  - [Marshaling Structure and Class](#marshaling-structure-and-class)
- - [Marshaling Function](#marshaling-function)
+ - [Function Prototyping](#function-prototyping)
  - [Marshaling Delegate as Callback](#marshaling-delegate-as-callback)
  - [Misc](#misc)
 
@@ -36,8 +36,8 @@ Details: [DllImportAttribute Class](https://msdn.microsoft.com/en-us/library/sys
 
 *Indicates how to marshal the data between managed and unmanaged code. You can apply this attribute to **parameters, fields, or return values**. This attribute is optional, as each data type has a default marshaling behavior. This attribute is only necessary when a given type can be marshaled to multiple types **i.e. String***
 
-| C/C++ | C# |
-|-------|----|
+| Native | C# |
+|--------|----|
 |`void demo(char* data)` | pass-by-value<br>`static extern void demo([MarshalAs(UnmanagedType.LPStr)] string data)` |
 | `void demo(char* data, int size)` | pass-by-ref : **IntPtr**<br>`static extern void demo(IntPtr buffer, int size)` |
 | `void demo(char* data, int size)` | pass-by-ref : **StringBuilder**<br>`static extern void demo([MarshalAs(UnmanagedType.LPStr)] StringBuilder buffer, int size)` |
@@ -147,6 +147,22 @@ Details: [Marshaling Classes, Structures](https://docs.microsoft.com/en-us/dotne
 
 <br><br>
 
+## <a name="#function-prototyping"></a>Function Prototyping
+
+*Managed functions are attributed with [DllImport](#dllimport) & [MasrshalAs](#marshalas). Marshaling behavior is controlled through these attributes.*
+
+| Native | C# |
+|--------|----|
+| `void demo(char flag)` | `[DllImport("demo.dll", EntryPoint="demo", CallingConvention=CallingConvention.Cdecl)]`<br>`static extern void Demo([MarshalAs(UnmanagedType.LPStr)] string data)` |
+| `void demo(char* data)` | `[DllImport("demo.dll", EntryPoint="demo", CallingConvention=CallingConvention.Cdecl)]`<br>`static extern void Demo([MarshalAs(UnmanagedType.U1)] char flag)` |
+| `void demo(char* data)` | `[DllImport("demo.dll", EntryPoint="demo", CallingConvention=CallingConvention.Cdecl)]`<br>`static extern void demo(IntPtr buffer)`<br><br>`[DllImport("demo.dll", EntryPoint="demo", CallingConvention=CallingConvention.Cdecl)]`<br>`static extern void demo([MarshalAs(UnmanagedType.LPStr)] StringBuilder buffer)` |
+| CPP : `void demo(bool isOk)` | `[DllImport("demo.dll", EntryPoint="demo", CallingConvention=CallingConvention.Cdecl)]`<br>`static extern void Demo(MarshalAs(UnmanagedType.Bool) bool isOk)` |
+| `void modifyStruct(struct MyStruct myStruct)` | `[DllImport("demo.dll", EntryPoint="modifyStruct", CallingConvention=CallingConvention.Cdecl)]`<br>`void ModifyStruct(MyStruct myStruct)` |
+| `void modifyStruct(struct MyStruct* myStruct)` | `[DllImport("demo.dll", EntryPoint="modifyStruct", CallingConvention=CallingConvention.Cdecl)]`<br>`void ModifyStruct(out MyStruct myStruct)<br>void ModifyMessage(IntPtr myStruct)` |
+| `double mathOperation(int x, int y, double(*lambda)(int xx, int yy));` | `[UnmanagedFunctionPointer(CallingConvention.StdCall)]<br>public delegate double OperationHandler(int x, int y);`<br><br>`[DllImport("NativeLib.dll", EntryPoint = "mathOperation")]<br>static public extern double MathOperation(int x, int y, OperationHandler oh)` |
+
+<br><br>
+
 ## <a name="#marshaling-delegate-as-callback">Marshaling Delegate as Callback
 
 Delegate is attributed with [UnmanagedFunctionPointer](https://msdn.microsoft.com/en-us/library/system.runtime.interopservices.unmanagedfunctionpointerattribute) : `[UnmanagedFunctionPointer(CallingConvention.x)]`
@@ -159,7 +175,7 @@ Delegate is attributed with [UnmanagedFunctionPointer](https://msdn.microsoft.co
 ``` 
 double mathOperation(int x, int y, double(*lambda)(int inputOne, int inputTwo));`
 ```
-**C# Code Wrapper**
+**C# Wrapper**
 ```
 [UnmanagedFunctionPointer(CallingConvention.StdCall)]
 public delegate double OperationHandler(int x, int y);
@@ -167,7 +183,7 @@ public delegate double OperationHandler(int x, int y);
 [DllImport("NativeLib.dll", EntryPoint = "mathOperation")]
 private static extern double MathOperation(int x, int y, OperationHandler operationHandler);
 
-// [MarshalAs(UnmanagedType.)] should be applied for parameters if needed
+// [MarshalAs(UnmanagedType.x)] should be applied for parameters if needed
 ```
 **C# Caller**
 ```
