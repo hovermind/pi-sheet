@@ -183,15 +183,15 @@ var result = MathOperation(10, 5, (x, y) => {
 
 | Native | C# |
 |--------|----|
-| `void demo(char flag)` | `[DllImport("demo.dll", EntryPoint="demo", CallingConvention=CallingConvention.Cdecl)]`<br>`static extern void Demo([MarshalAs(UnmanagedType.LPStr)] string data)` |
-| `void demo(char* data)` | `[DllImport("demo.dll", EntryPoint="demo", CallingConvention=CallingConvention.Cdecl)]`<br>`static extern void Demo([MarshalAs(UnmanagedType.U1)] char flag)` |
-| `void demo(char* data)` | `[DllImport("demo.dll", EntryPoint="demo", CallingConvention=CallingConvention.Cdecl)]`<br>`static extern void demo(IntPtr buffer)`<br><br>`[DllImport("demo.dll", EntryPoint="demo", CallingConvention=CallingConvention.Cdecl)]`<br>`static extern void demo([MarshalAs(UnmanagedType.LPStr)] StringBuilder buffer)` |
-| CPP : `void demo(bool isOk)` | `[DllImport("demo.dll", EntryPoint="demo", CallingConvention=CallingConvention.Cdecl)]`<br>`static extern void Demo(MarshalAs(UnmanagedType.Bool) bool isOk)` |
-| `void modifyStruct(struct MyStruct myStruct)` | `[DllImport("demo.dll", EntryPoint="modifyStruct", CallingConvention=CallingConvention.Cdecl)]`<br>`void ModifyStruct(MyStruct myStruct)` |
-| `void modifyStruct(struct MyStruct* myStruct)` | `[DllImport("demo.dll", EntryPoint="modifyStruct", CallingConvention=CallingConvention.Cdecl)]`<br>`void ModifyStruct(out MyStruct myStruct)<br>void ModifyMessage(IntPtr myStruct)` |
+| `void demo(char flag)` | `[DllImport("demo.dll", EntryPoint="demo")]`<br>`static extern void Demo([MarshalAs(UnmanagedType.LPStr)] string data)` |
+| `void demo(char* data)` | `[DllImport("demo.dll", EntryPoint="demo")]`<br>`static extern void Demo([MarshalAs(UnmanagedType.U1)] char flag)` |
+| `void demo(char* data)` | `[DllImport("demo.dll", EntryPoint="demo")]`<br>`static extern void demo(IntPtr buffer)`<br><br>`[DllImport("demo.dll", EntryPoint="demo")]`<br>`static extern void demo([MarshalAs(UnmanagedType.LPStr)] StringBuilder buffer)` |
+| CPP : `void demo(bool isOk)` | `[DllImport("demo.dll", EntryPoint="demo")]`<br>`static extern void Demo(MarshalAs(UnmanagedType.Bool) bool isOk)` |
+| `void modifyStruct(struct MyStruct myStruct)` | `[DllImport("demo.dll", EntryPoint="modifyStruct")]`<br>`void ModifyStruct(MyStruct myStruct)` |
+| `void modifyStruct(struct MyStruct* myStruct)` | `[DllImport("demo.dll", EntryPoint="modifyStruct")]`<br>`void ModifyStruct(out MyStruct myStruct)<br>void ModifyMessage(IntPtr myStruct)` |
 | `double mathOperation(int x, int y, double(*lambda)(int xx, int yy));` | `[UnmanagedFunctionPointer(CallingConvention.StdCall)]<br>public delegate double OperationHandler(int x, int y);`<br><br>`[DllImport("NativeLib.dll", EntryPoint = "mathOperation")]<br>static public extern double MathOperation(int x, int y, OperationHandler oh)` |
 
-#### Return Value
+### Return Value
 `[return: MarshalAs(UnmanagedType.x)] ` is used to override default marshaling vehavior of returned value.
 ```
 [return: MarshalAs(UnmanagedType.LPTStr)] 
@@ -200,7 +200,7 @@ public string GetMessage()
     return "Hello Hooman";
 }
 ```
-#### [In, Out]
+### [In, Out]
 When to use:
  - native code requires pass-by-reference (a pointer) & the parameter type is a value type.
  - you expect to see any changes made by the native code to a struct or class member back in your code
@@ -229,7 +229,7 @@ public static extern int TestArrayOfStructs([In, Out] MyPoint[] pointArray, int 
 
 ## <a name="misc"></a>Misc
 
-Some Hacks & Tips: Pending ... ... ...
+Some Hacks & Tips: Pending ... ... ... for @Jim Borrrrrrrrrrden
 
 
 
