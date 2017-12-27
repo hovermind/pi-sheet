@@ -1,4 +1,14 @@
-###  `[DllImport("name.dll", ...)]`
+<a name="#toc"></a>TOC
+ - [DllImport](#dllimport)
+ - [MarshalAs](#marshal-as)
+ - [StructureLayout](#structure-layout)
+ - [Marshaling Structure & Class](#marshaling-snc)
+ - [Marshaling Function](#marshaling-function)
+ - [Marshaling Delegate as Callback](#marshaling-delegate)
+ - [Misc](#misc)
+
+
+###  <a name="#dllimport"></a>`[DllImport("name.dll", ...)]`
 
 *Indicates that the attributed method is exposed by an unmanaged dynamic-link library (DLL) as a static entry point.* For details see [DllImportAttribute Class](https://msdn.microsoft.com/en-us/library/system.runtime.interopservices.dllimportattribute)
 
