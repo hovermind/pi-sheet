@@ -4,7 +4,7 @@
  - [StructureLayout](#struct-layout)
  - [Marshaling Structure and Class](#marshaling-structure-and-class)
  - [Marshaling Function](#marshaling-function)
- - [Marshaling Delegate as Callback](#marshaling-delegate)
+ - [Marshaling Delegate as Callback](#marshaling-delegate-as-callback)
  - [Misc](#misc)
 
 <br><br>
@@ -74,6 +74,7 @@ Details: [StructLayoutAttribute Class](https://docs.microsoft.com/en-us/dotnet/a
 <br><br>
 
 ## <a name="#marshaling-structure-and-class">Marshaling Structure and Class
+ 
 *[MarshalAs](#marshalas) & [StructureLayout](#struct-layout) attributes are used to marshal Structure & Class*
  
 **Native Code** 
@@ -89,7 +90,7 @@ struct MessageStruct
 void modifyMessage(struct MessageStruct userMsg)
 void modifyMessage(struct MessageStruct* userMsg)
 ```
-**Corresponding C# Code**
+**C# Code**
 ```
 void modifyMessage(struct MessageStruct userMsg)
 void modifyMessage(struct MessageStruct* userMsg)
@@ -116,7 +117,9 @@ void ModifyMessage(IntPtr userMsg) // by ref
 ```
 
 #### FieldOffsetAttribute
+
 *Used with LayoutKind.Explicit to indicates physical position of fields within unmanaged representation of a class or structure.*
+
 ```
 [StructLayout(LayoutKind.Explicit, Size=14, CharSet=CharSet.Ansi)]
 public struct Rect 
@@ -140,8 +143,32 @@ public class MySystemTime
    [FieldOffset(14)]public ushort wMilliseconds; 
 }
 ```
+Details: [Marshaling Classes, Structures](https://docs.microsoft.com/en-us/dotnet/framework/interop/marshaling-different-types-of-arrays)
 
+<br><br>
 
+## <a name="#marshaling-delegate-as-callback">Marshaling Delegate as Callback
+
+**Native Code**
+``` 
+double mathOperation(int x, int y, double(*lambda)(int inputOne, int inputTwo));`
+```
+**C# Code Wrapper**
+```
+[UnmanagedFunctionPointer(CallingConvention.StdCall)]
+public delegate double OperationHandler(int x, int y);
+
+[DllImport("NativeLib.dll", EntryPoint = "mathOperation")]
+private static extern double MathOperation(int x, int y, OperationHandler operationHandler);
+
+// [MarshalAs(UnmanagedType.)] should be applied for parameters if needed
+```
+**C# Caller**
+```
+var result = MathOperation(10, 5, (x, y) => {
+    return x * y;
+});
+```
 
 
 
