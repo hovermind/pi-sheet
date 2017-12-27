@@ -3,8 +3,8 @@
  - [MarshalAs](#marshalas)
  - [StructureLayout](#struct-layout)
  - [Marshaling Structure and Class](#marshaling-structure-and-class)
- - [Function Prototyping](#function-prototyping)
  - [Marshaling Delegate as Callback](#marshaling-delegate-as-callback)
+ - [Function Prototyping](#function-prototyping)
  - [Misc](#misc)
 
 <br><br>
