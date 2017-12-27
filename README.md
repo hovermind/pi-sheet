@@ -41,16 +41,16 @@ Details: [DllImportAttribute Class](https://msdn.microsoft.com/en-us/library/sys
 |`void demo(char* data)` | pass-by-value<br>`static extern void demo([MarshalAs(UnmanagedType.LPStr)] string data)` |
 | `void demo(char* data, int size)` | pass-by-ref : **IntPtr**<br>`static extern void demo(IntPtr buffer, int size)` |
 | `void demo(char* data, int size)` | pass-by-ref : **StringBuilder**<br>`static extern void demo([MarshalAs(UnmanagedType.LPStr)] StringBuilder buffer, int size)` |
-| `char x` | `[MarshalAs(UnmanagedType.U1)]`<br>`public char x` |
-| `char* x` | `[MarshalAs(UnmanagedType.LPStr)]`<br>public string x` |
-| `char x[256]` | `[MarshalAs(UnmanagedType.ByValTStr, SizeConst=256)]`<br>`public string x` |
-| `WCHAR* x` | `[MarshalAs(UnmanagedType.LPWStr)]`<br>`public string x` |
-| `WCHAR x[256]` | `[MarshalAs(UnmanagedType.ByValTStr, SizeConst=256)]`<br>`public string x` |
-| `TCHAR* x` | `[MarshalAs(UnmanagedType.LPTStr)]`<br>`public string x` |
-| `TCHAR x[256]` | `[MarshalAs(UnmanagedType.ByValTStr, SizeConst=256)]`<br>`public string x` |
+| `char x` | `[MarshalAs(UnmanagedType.U1)] public char x` |
+| `char* x` | `[MarshalAs(UnmanagedType.LPStr)] public string x` |
+| `char x[256]` | `[MarshalAs(UnmanagedType.ByValTStr, SizeConst=256)] public string x` |
+| `WCHAR* x` | `[MarshalAs(UnmanagedType.LPWStr)] public string x` |
+| `WCHAR x[256]` | `[MarshalAs(UnmanagedType.ByValTStr, SizeConst=256)] public string x` |
+| `TCHAR* x` | `[MarshalAs(UnmanagedType.LPTStr)] public string x` |
+| `TCHAR x[256]` | `[MarshalAs(UnmanagedType.ByValTStr, SizeConst=256)] public string x` |
 | `bool` | `MarshalAs(UnmanagedType.U1)` / `MarshalAs(UnmanagedType.I1)` |
 | `BOOL` | `MarshalAs(UnmanagedType.Bool)` |
-| `int numbers[10]` | `[MarshalAs(UnmanagedType.ByValArray, SizeConst=10)]`<br>`public int[] Numbers` |
+| `int numbers[10]` | `[MarshalAs(UnmanagedType.ByValArray, SizeConst=10)] public int[] Numbers` |
 
 Details: [MarshalAsAttribute Class](https://msdn.microsoft.com/en-us/library/system.runtime.interopservices.marshalasattribute) & [UnmanagedType Enumeration](https://msdn.microsoft.com/en-us/library/system.runtime.interopservices.unmanagedtype)
 
