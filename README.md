@@ -235,6 +235,8 @@ public static extern int TestArrayOfStrings([In, Out] String[] stringArray, int 
 [DllImport("demo.dll", EntryPoint="testArrayOfStructs", CallingConvention=CallingConvention.Cdecl)]
 public static extern int TestArrayOfStructs([In, Out] MyPoint[] pointArray, int size ); 
 ```
+Details : [InAttribute Class](https://msdn.microsoft.com/en-us/library/system.runtime.interopservices.inattribute) & [OutAttribute Class](https://msdn.microsoft.com/en-us/library/system.runtime.interopservices.outattribute)
+
 [Top](#toc)
 
 <br><br>
