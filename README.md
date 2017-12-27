@@ -2,7 +2,7 @@
  - [DllImport](#dllimport)
  - [MarshalAs](#marshalas)
  - [StructureLayout](#struct-layout)
- - [Marshaling Structure & Class](#marshaling-snc)
+ - [Marshaling Structure and Class](#marshaling-structure-and-class)
  - [Marshaling Function](#marshaling-function)
  - [Marshaling Delegate as Callback](#marshaling-delegate)
  - [Misc](#misc)
@@ -71,10 +71,75 @@ Details: [MarshalAsAttribute Class](https://msdn.microsoft.com/en-us/library/sys
 
 Details: [StructLayoutAttribute Class](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.structlayoutattribute)
 
+<br><br>
 
+## <a name="#marshaling-structure-and-class">Marshaling Structure and Class
+*[MarshalAs](#marshalas) & [StructureLayout](#struct-layout) attributes are used to marshal Structure & Class*
+ 
+**Native Code** 
+```
+struct MessageStruct
+{
+  char MsgID[11];
+  char MsgText[501];
+  char Status;
+  int Numbers[10]
+};
 
+void modifyMessage(struct MessageStruct userMsg)
+void modifyMessage(struct MessageStruct* userMsg)
+```
+**Corresponding C# Code**
+```
+void modifyMessage(struct MessageStruct userMsg)
+void modifyMessage(struct MessageStruct* userMsg)
 
+[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
+public unsafe struct MessageStruct
+{
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 11)]
+    public string MsgID;
 
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 501)]
+    public string MsgText;
+
+    [MarshalAs(UnmanagedType.U1)]
+    public char Status;
+    
+    [MarshalAs(UnmanagedType.ByValArray, SizeConst=10)]
+    public int[] Numbers;
+}
+
+void ModifyMessage(MessageStruct userMsg) // by value
+void ModifyMessage(out MessageStruct userMsg) // by ref
+void ModifyMessage(IntPtr userMsg) // by ref
+```
+
+#### FieldOffsetAttribute
+*Used with LayoutKind.Explicit to indicates physical position of fields within unmanaged representation of a class or structure.*
+```
+[StructLayout(LayoutKind.Explicit, Size=14, CharSet=CharSet.Ansi)]
+public struct Rect 
+{
+   [FieldOffset(0)] public int left;
+   [FieldOffset(4)] public int top;
+   [FieldOffset(8)] public int right;
+   [FieldOffset(12)] public int bottom;
+}
+
+[StructLayout(LayoutKind.Explicit, Size=16, CharSet=CharSet.Ansi)]
+public class MySystemTime 
+{
+   [FieldOffset(0)]public ushort wYear; 
+   [FieldOffset(2)]public ushort wMonth;
+   [FieldOffset(4)]public ushort wDayOfWeek; 
+   [FieldOffset(6)]public ushort wDay; 
+   [FieldOffset(8)]public ushort wHour; 
+   [FieldOffset(10)]public ushort wMinute; 
+   [FieldOffset(12)]public ushort wSecond; 
+   [FieldOffset(14)]public ushort wMilliseconds; 
+}
+```
 
 
 
