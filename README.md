@@ -1,4 +1,4 @@
-<a name="#toc"></a>TOC
+<a name="#toc">TOC
  - [DllImport](#dllimport)
  - [MarshalAs](#marshalas)
  - [StructureLayout](#struct-layout)
@@ -27,7 +27,9 @@
 | SetLastError | *enables the caller to use the Marshal.GetLastWin32Error API function to determine whether an error occurred while executing the method.* **default is false.**<br>`[DllImport("demo.dll", SetLastError=true)]` |
 
 Details: [DllImportAttribute Class](https://msdn.microsoft.com/en-us/library/system.runtime.interopservices.dllimportattribute)
+
 [Top](#toc)
+
 <br><br>
 
 ## <a name="#marshalas"></a>MarshalAs
