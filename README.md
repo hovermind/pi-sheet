@@ -1,4 +1,4 @@
-<a name="#toc">TOC
+<a name="#toc">Toc
  - [DllImport](#dllimport)
  - [MarshalAs](#marshalas)
  - [StructureLayout](#struct-layout)
@@ -28,7 +28,7 @@
 
 Details: [DllImportAttribute Class](https://msdn.microsoft.com/en-us/library/system.runtime.interopservices.dllimportattribute)
 
-[Top](#toc)
+[Toc](#toc)
 
 <br><br>
 
