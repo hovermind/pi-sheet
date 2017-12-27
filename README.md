@@ -205,19 +205,24 @@ When to use:
  - native code requires pass-by-reference (a pointer) & the parameter type is a value type.
  - you expect to see any changes made by the native code to a struct or class member back in your code
 
-C
-:
+**Native Code**
 ```
 int testArrayOfInts(int* pArray, int pSize);
+
 int testArrayOfStrings(char** ppStrArray, int size);
+
 int testArrayOfStructs(MyPoint* pStructArray, int size); 
 ``` 
 
-C#
-:
+**C# Code**
 ```
+[DllImport("demo.dll", EntryPoint="testArrayOfInts", CallingConvention=CallingConvention.Cdecl)]
 public static extern int TestArrayOfInts([In, Out] int[] array, int size);
+
+[DllImport("demo.dll", EntryPoint="testArrayOfStrings", CallingConvention=CallingConvention.Cdecl)]
 public static extern int TestArrayOfStrings([In, Out] String[] stringArray, int size);
+
+[DllImport("demo.dll", EntryPoint="testArrayOfStructs", CallingConvention=CallingConvention.Cdecl)]
 public static extern int TestArrayOfStructs([In, Out] MyPoint[] pointArray, int size ); 
 ```
 <br><br>
