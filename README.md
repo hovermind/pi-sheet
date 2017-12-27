@@ -1,6 +1,4 @@
-**C# Platform Invoke Cheatsheet for marshalling managed code into unmanaged code and vice-versa**
-
-##  `[DllImport("name.dll", ...)]`
+###  `[DllImport("name.dll", ...)]`
 
 *Indicates that the attributed method is exposed by an unmanaged dynamic-link library (DLL) as a static entry point.* For details see [DllImportAttribute Class](https://msdn.microsoft.com/en-us/library/system.runtime.interopservices.dllimportattribute)
 
@@ -14,3 +12,5 @@
 | ThrowOnUnmappableChar | *throwing of an exception on an unmappable Unicode character that is converted to an ANSI "?" character..* **default is false.**<br>`[DllImport("demo.dll", BestFitMapping=true, ThrowOnUnmappableChar=false)]` |
 | PreserveSig | *indicates whether unmanaged methods that have HRESULT or retval return values are directly translated or whether HRESULT or retval return values are automatically converted to exceptions..* **default is true.**<br>`[DllImport("demo.dll", ExactSpelling = true, PreserveSig = false)]` |
 | SetLastError | *enables the caller to use the Marshal.GetLastWin32Error API function to determine whether an error occurred while executing the method.* **default is false.**<br>`[DllImport("demo.dll", SetLastError=true)]` |
+
+
