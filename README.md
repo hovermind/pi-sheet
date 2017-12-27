@@ -1,4 +1,4 @@
-# <a name="#toc">Toc
+# <a name="#toc">TOC
  - [DllImport](#dllimport)
  - [MarshalAs](#marshalas)
  - [StructureLayout](#struct-layout)
@@ -28,7 +28,7 @@
 
 Details: [DllImportAttribute Class](https://msdn.microsoft.com/en-us/library/system.runtime.interopservices.dllimportattribute)
 
-[Toc](#toc)
+[Top](#toc)
 
 <br><br>
 
@@ -55,7 +55,9 @@ Details: [DllImportAttribute Class](https://msdn.microsoft.com/en-us/library/sys
 | `int numbers[10]` | `[MarshalAs(UnmanagedType.ByValArray, SizeConst=10)] public int[] Numbers` |
 
 Details: [MarshalAsAttribute Class](https://msdn.microsoft.com/en-us/library/system.runtime.interopservices.marshalasattribute) & [UnmanagedType Enumeration](https://msdn.microsoft.com/en-us/library/system.runtime.interopservices.unmanagedtype)
+
 [Top](#toc)
+
 <br><br>
 
 ## <a name="struct-layout"></a>StructLayout
@@ -72,7 +74,9 @@ Details: [MarshalAsAttribute Class](https://msdn.microsoft.com/en-us/library/sys
 | Pack | *Controls the alignment of data fields of a class or structure in memory. **Default value is 0***<br>`[StructLayout(LayoutKind.Sequential, Pack=1)]` |
 
 Details: [StructLayoutAttribute Class](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.structlayoutattribute)
+
 [Top](#toc)
+
 <br><br>
 
 ## <a name="#marshaling-structure-and-class">Marshaling Structure and Class
@@ -146,7 +150,9 @@ public class MySystemTime
 }
 ```
 Details: [Marshaling Classes, Structures](https://docs.microsoft.com/en-us/dotnet/framework/interop/marshaling-different-types-of-arrays)
+
 [Top](#toc)
+
 <br><br>
 
 ## <a name="#marshaling-delegate-as-callback">Marshaling Delegate as Callback
@@ -178,6 +184,7 @@ var result = MathOperation(10, 5, (x, y) => {
 });
 ```
 [Top](#toc)
+
 <br><br>
 
 ## <a name="#function-prototyping"></a>Function Prototyping
@@ -229,6 +236,7 @@ public static extern int TestArrayOfStrings([In, Out] String[] stringArray, int 
 public static extern int TestArrayOfStructs([In, Out] MyPoint[] pointArray, int size ); 
 ```
 [Top](#toc)
+
 <br><br>
 
 ## <a name="misc"></a>Misc
