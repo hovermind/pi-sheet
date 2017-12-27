@@ -149,6 +149,12 @@ Details: [Marshaling Classes, Structures](https://docs.microsoft.com/en-us/dotne
 
 ## <a name="#marshaling-delegate-as-callback">Marshaling Delegate as Callback
 
+Delegate is attributed with [UnmanagedFunctionPointer](https://msdn.microsoft.com/en-us/library/system.runtime.interopservices.unmanagedfunctionpointerattribute) : `[UnmanagedFunctionPointer(CallingConvention.x)]`
+
+* **NB-1 :** When you use a delegate inside a call, the common language runtime protects the delegate from being garbage collected for the duration of that call. However, if the unmanaged function stores the delegate to use after the call completes, you must manually prevent garbage collection until the unmanaged function finishes with the delegate.*
+
+* **NB-2 :** Can not use generic delegate i.e. `Action<T>`, `Func<T>`*
+
 **Native Code**
 ``` 
 double mathOperation(int x, int y, double(*lambda)(int inputOne, int inputTwo));`
