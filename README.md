@@ -8,7 +8,7 @@
  - [Misc](#misc)
 
 
-###  <a name="#dllimport"></a>`[DllImport("name.dll", ...)]`
+###  <a name="#dllimport"></a> `[DllImport("name.dll", ...)]`
 
 *Indicates that the attributed method is exposed by an unmanaged dynamic-link library (DLL) as a static entry point.* For details see [DllImportAttribute Class](https://msdn.microsoft.com/en-us/library/system.runtime.interopservices.dllimportattribute)
 
