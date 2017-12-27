@@ -1,7 +1,7 @@
 <a name="#toc"></a>TOC
  - [DllImport](#dllimport)
  - [MarshalAs](#marshalas)
- - [StructureLayout](#structure-layout)
+ - [StructureLayout](#struct-layout)
  - [Marshaling Structure & Class](#marshaling-snc)
  - [Marshaling Function](#marshaling-function)
  - [Marshaling Delegate as Callback](#marshaling-delegate)
@@ -53,6 +53,29 @@ Details: [DllImportAttribute Class](https://msdn.microsoft.com/en-us/library/sys
 | `int numbers[10]` | `[MarshalAs(UnmanagedType.ByValArray, SizeConst=10)] public int[] Numbers` |
 
 Details: [MarshalAsAttribute Class](https://msdn.microsoft.com/en-us/library/system.runtime.interopservices.marshalasattribute) & [UnmanagedType Enumeration](https://msdn.microsoft.com/en-us/library/system.runtime.interopservices.unmanagedtype)
+
+<br><br>
+
+## <a name="struct-layout"></a>StructLayout
+
+`[StructLayout(LayoutKind.x, Size=xx, CharSet=CharSet.x, Pack=x)]`
+
+*Lets you control the physical layout of the data fields of a class or structure in memory. Applied to **Structure & Class***
+
+| Field | Usage |
+|-------|-------|
+| LayoutKind | *Controls the layout of an object when exported to unmanaged code. **Default is Auto***<br>`[StructLayout(LayoutKind.Sequential)]` |
+| CharSet | *Indicates whether string data fields within the class should be marshaled as **LPWSTR or LPSTR by default**.*<br>`[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Ansi)]` |
+| Size | *Indicates the absolute size of the class or structure. This field must be equal or greater than the total size (**in bytes**) of the members of the class or structure.*<br>`[StructLayout(LayoutKind.Sequential, Size=16)]` |
+| Pack | *Controls the alignment of data fields of a class or structure in memory. **Default value is 0***<br>`[StructLayout(LayoutKind.Sequential, Pack=1)]` |
+
+Details: [StructLayoutAttribute Class](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.structlayoutattribute)
+
+
+
+
+
+
 
 
 
