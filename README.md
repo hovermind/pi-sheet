@@ -1,3 +1,5 @@
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](http://paypal.me/hovermind/10usd)
+
 # <a name="#toc">TOC
  - [DllImport](#dllimport)
  - [MarshalAs](#marshalas)
