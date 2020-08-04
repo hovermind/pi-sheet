@@ -1,5 +1,8 @@
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](http://paypal.me/hovermind/10usd)
 
+## Platform Invoke (P/Invoke) - native interoperability in .NET
+P/Invoke is a technology that allows you to access structs, callbacks, and functions in unmanaged libraries from your managed code.
+
 # <a name="#toc">TOC
  - [DllImport](#dllimport)
  - [MarshalAs](#marshalas)
