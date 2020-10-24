@@ -11,6 +11,12 @@ P/Invoke is a technology that allows you to access structs, callbacks, and funct
  - [Marshaling Delegate as Callback](#marshaling-delegate-as-callback)
  - [Function Prototyping](#function-prototyping)
  - [Misc](#misc)
+ 
+ 
+ ## Usages
+ * Copy to clipboard in a console app <https://stackoverflow.com/a/13571530/4802664>
+ * NoSQL embedded database i.e. my firend working on [Couchbase Lite for .NET](https://github.com/couchbase/couchbase-lite-net) and he uses platform Invoke
+ 
 
 <br><br>
 
